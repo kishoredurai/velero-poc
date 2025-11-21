@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: todo-app
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: todo-app
+            namespace: todo-app
+            path: todo-app
+            repoURL: https://github.com/kishoredurai/velero-poc.git
+            targetRevision: master
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: velero
+      source:
+        repoURL: '{{repoURL}}'
+        targetRevision: '{{targetRevision}}'
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
+
