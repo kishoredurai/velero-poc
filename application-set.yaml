@@ -11,7 +11,7 @@ spec:
             namespace: basic-web-app
             path: basic-web-app
             repoURL: https://github.com/your-org/your-repo.git
-            targetRevision: main
+            targetRevision: master
   template:
     metadata:
       name: '{{name}}'
