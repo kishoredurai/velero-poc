@@ -10,7 +10,7 @@ spec:
           - name: simple-webapp
             namespace: basic-web-app
             path: basic-web-app
-            repoURL: https://github.com/your-org/your-repo.git
+            repoURL: https://github.com/kishoredurai/velero-poc.git
             targetRevision: master
   template:
     metadata:
