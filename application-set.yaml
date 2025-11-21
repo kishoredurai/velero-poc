@@ -8,15 +8,15 @@ spec:
     - list:
         elements:
           - name: simple-webapp
-            namespace: default
-            path: manifests
+            namespace: basic-web-app
+            path: basic-web-app
             repoURL: https://github.com/your-org/your-repo.git
             targetRevision: main
   template:
     metadata:
       name: '{{name}}'
     spec:
-      project: default
+      project: velero
       source:
         repoURL: '{{repoURL}}'
         targetRevision: '{{targetRevision}}'
